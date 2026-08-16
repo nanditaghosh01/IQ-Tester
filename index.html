@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>IQ Tester — Challenge Your Mind</title>
+<meta name="description" content="An adaptive, IQ-style reasoning and cognitive challenge platform. Test logic, memory, pattern recognition, verbal reasoning and processing speed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+<!-- Floating ambient background -->
+<div class="ambient" aria-hidden="true">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+  <svg class="scanlines" aria-hidden="true"></svg>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="IQ Tester home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="28" height="28"><circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/><circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="26 80" stroke-linecap="round"/><circle cx="20" cy="20" r="6" fill="currentColor"/></svg>
+      </span>
+      <span class="brand-text">IQ<span class="brand-accent">Tester</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#top" data-view="landing">Home</a>
+      <a href="#how" data-view="landing" data-scroll="how">How It Works</a>
+      <a href="#history" data-view="history">History</a>
+      <a href="#about" data-view="landing" data-scroll="about">About</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+      </button>
+      <button class="btn btn-primary btn-nav" id="navStartBtn">Start Test</button>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ============ VIEW: LANDING ============ -->
+  <section class="view view-landing active" id="view-landing" data-view-root="landing">
+
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <p class="eyebrow"><span class="dot"></span> Adaptive Cognitive Assessment</p>
+        <h1 class="hero-title">IQ<span class="accent">Tester</span></h1>
+        <p class="hero-tagline">Challenge your mind. Discover your reasoning power.</p>
+        <p class="hero-sub">Test your logic, memory, pattern recognition, verbal reasoning and processing speed through a fast-paced adaptive IQ-style challenge — powered by a large, ever-growing reasoning bank.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" id="heroStartBtn">
+            <span>Start Test</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <button class="btn btn-ghost btn-lg" id="howBtn">How It Works</button>
+        </div>
+        <div class="hero-stats" role="list" aria-label="Assessment facts">
+          <div role="listitem"><strong>Adaptive</strong><span>Question bank</span></div>
+          <div role="listitem"><strong>10–15s</strong><span>Per challenge</span></div>
+          <div role="listitem"><strong>6</strong><span>Reasoning domains</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="dial">
+          <svg viewBox="0 0 220 220" class="dial-svg">
+            <circle cx="110" cy="110" r="96" class="dial-track"/>
+            <circle cx="110" cy="110" r="96" class="dial-progress" id="heroDialProgress"/>
+            <g class="dial-ticks" id="heroTicks"></g>
+          </svg>
+          <div class="dial-center">
+            <span class="dial-number" id="heroDialNumber">128</span>
+            <span class="dial-label">Sample Score</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="section-inner">
+        <div class="feature-grid" role="list">
+          <div class="feature-card" role="listitem"><span class="feature-icon">🧠</span><h3>Adaptive Questions</h3><p>Difficulty responds to your performance in real time.</p></div>
+          <div class="feature-card" role="listitem"><span class="feature-icon">⚡</span><h3>10–15 Second Challenges</h3><p>A strict per-question timer keeps every response sharp and honest.</p></div>
+          <div class="feature-card" role="listitem"><span class="feature-icon">🎯</span><h3>Six Reasoning Domains</h3><p>Numerical, logical, visual, verbal, memory and speed.</p></div>
+          <div class="feature-card" role="listitem"><span class="feature-icon">📊</span><h3>Detailed Analysis</h3><p>A full breakdown of accuracy, speed and consistency.</p></div>
+          <div class="feature-card" role="listitem"><span class="feature-icon">🏆</span><h3>Personalized Results</h3><p>Strengths and growth areas, explained in plain language.</p></div>
+          <div class="feature-card" role="listitem"><span class="feature-icon">🔄</span><h3>Unlimited Retakes</h3><p>Fresh question sets every time, tracked over time.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="section-inner">
+        <p class="section-eyebrow">The Process</p>
+        <h2 class="section-title">Four steps to your score</h2>
+        <div class="how-steps">
+          <div class="how-step"><span class="how-index">01</span><h3>Choose</h3><p>Select a 10-question quick test or a 15-question full test.</p></div>
+          <div class="how-step"><span class="how-index">02</span><h3>Think</h3><p>Solve each challenge within its time limit — no pausing, no going back.</p></div>
+          <div class="how-step"><span class="how-index">03</span><h3>Analyze</h3><p>The engine scores accuracy, difficulty, speed and consistency together.</p></div>
+          <div class="how-step"><span class="how-index">04</span><h3>Discover</h3><p>Get your IQ-style score with a full cognitive performance breakdown.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="section-inner about-inner">
+        <p class="section-eyebrow">About</p>
+        <h2 class="section-title">What IQ Tester actually measures</h2>
+        <p class="about-text">IQ Tester is an interactive IQ-style reasoning experience designed to challenge logical thinking, pattern recognition, memory, verbal reasoning and processing speed through short, engaging assessments.</p>
+        <div class="disclaimer" role="note">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+          <p>This assessment provides an estimated IQ-style performance score for entertainment and educational purposes. It is not a clinically validated intelligence test and should not be used for psychological diagnosis or professional assessment.</p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ VIEW: TEST SELECT (modal-like section) ============ -->
+  <section class="view view-select" id="view-select" data-view-root="select">
+    <div class="select-card">
+      <p class="section-eyebrow">Test Selection</p>
+      <h2 class="section-title">Choose your challenge</h2>
+      <div class="select-options">
+        <button class="option-card" id="pickQuick" data-count="10">
+          <span class="option-tag">Quick Test</span>
+          <span class="option-count">10</span>
+          <span class="option-unit">Questions</span>
+          <span class="option-time">~2–3 minutes</span>
+        </button>
+        <button class="option-card option-card--full" id="pickFull" data-count="15">
+          <span class="option-tag">Full Test</span>
+          <span class="option-count">15</span>
+          <span class="option-unit">Questions</span>
+          <span class="option-time">~4 minutes</span>
+        </button>
+      </div>
+      <button class="btn btn-ghost" id="selectBackBtn">Cancel</button>
+    </div>
+  </section>
+
+  <!-- ============ VIEW: TEST ============ -->
+  <section class="view view-test" id="view-test" data-view-root="test">
+    <div class="test-topbar">
+      <span class="test-brand">IQ<span class="brand-accent">Tester</span></span>
+      <span class="test-counter" id="qCounter">QUESTION 01 / 10</span>
+      <span class="test-timer" id="qTimerText">15.0s</span>
+    </div>
+    <div class="test-progress-track"><div class="test-progress-fill" id="qProgressFill"></div></div>
+    <div class="focus-warning" id="focusWarning" role="alert">Please remain focused on the assessment.</div>
+
+    <div class="test-body">
+      <div class="test-ring" aria-hidden="true">
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle cx="60" cy="60" r="52" class="ring-track"/>
+          <circle cx="60" cy="60" r="52" class="ring-progress" id="ringProgress"/>
+        </svg>
+        <span class="ring-number" id="ringNumber">15</span>
+      </div>
+
+      <div class="q-card" id="qCard">
+        <div class="q-meta">
+          <span class="q-category" id="qCategory">Number Pattern</span>
+          <span class="q-difficulty" id="qDifficulty" data-level="Easy">Easy</span>
+        </div>
+        <p class="q-flavor" id="qFlavor">Think fast.</p>
+        <h2 class="q-text" id="qText">What number comes next in the sequence?</h2>
+        <div class="q-visual" id="qVisual" aria-hidden="true"></div>
+        <div class="q-options" id="qOptions"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VIEW: RESULTS ============ -->
+  <section class="view view-results" id="view-results" data-view-root="results">
+    <div class="section-inner results-inner">
+
+      <div class="results-hero">
+        <p class="section-eyebrow">Assessment Complete</p>
+        <h2 class="results-heading">Your IQ-style result</h2>
+        <div class="score-meter">
+          <svg viewBox="0 0 220 220" class="dial-svg">
+            <circle cx="110" cy="110" r="96" class="dial-track"/>
+            <circle cx="110" cy="110" r="96" class="dial-progress" id="resultDialProgress"/>
+          </svg>
+          <div class="dial-center">
+            <span class="dial-number" id="resultScoreNumber">0</span>
+            <span class="dial-label" id="resultBand">—</span>
+          </div>
+        </div>
+        <p class="score-disclaimer">Estimated IQ-style score — not a clinical or diagnostic measurement.</p>
+      </div>
+
+      <div class="results-block">
+        <h3 class="block-title">Performance Breakdown</h3>
+        <div class="breakdown-list" id="breakdownList"></div>
+      </div>
+
+      <div class="results-block">
+        <h3 class="block-title">Result Statistics</h3>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+
+      <div class="results-block">
+        <h3 class="block-title">Personalized Analysis</h3>
+        <p class="analysis-text" id="analysisText"></p>
+        <div class="analysis-cols">
+          <div class="analysis-col">
+            <h4><span class="dot dot-good"></span> Your Strengths</h4>
+            <ul id="strengthsList"></ul>
+          </div>
+          <div class="analysis-col">
+            <h4><span class="dot dot-warn"></span> Areas to Improve</h4>
+            <ul id="improveList"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-block share-block">
+        <h3 class="block-title">Share Your Result</h3>
+        <div class="share-card" id="shareCard">
+          <div class="share-card-head">
+            <span class="share-brand">🧠 IQ Tester</span>
+          </div>
+          <p class="share-label">MY IQ-STYLE SCORE</p>
+          <p class="share-score" id="shareScore">0</p>
+          <p class="share-band" id="shareBand">—</p>
+          <div class="share-meta">
+            <span id="shareAccuracy">Accuracy: 0%</span>
+            <span id="shareTime">Avg Time: 0.0s</span>
+          </div>
+          <p class="share-cta">Can you beat my score?</p>
+        </div>
+        <div class="share-actions">
+          <button class="btn btn-primary" id="shareBtn">Share Result</button>
+          <button class="btn btn-ghost" id="copyBtn">Copy to Clipboard</button>
+        </div>
+        <p class="copy-confirm" id="copyConfirm" aria-live="polite"></p>
+      </div>
+
+      <div class="results-actions">
+        <button class="btn btn-primary btn-lg" id="retakeBtn">Take Another Test</button>
+        <button class="btn btn-ghost btn-lg" id="viewHistoryBtn">View History</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VIEW: HISTORY ============ -->
+  <section class="view view-history" id="view-history" data-view-root="history">
+    <div class="section-inner">
+      <p class="section-eyebrow">My History</p>
+      <h2 class="section-title">Performance trend</h2>
+
+      <div class="trend-block" id="trendBlock">
+        <svg viewBox="0 0 600 220" class="trend-svg" id="trendSvg" role="img" aria-label="Score trend over past tests"></svg>
+        <p class="trend-delta" id="trendDelta"></p>
+      </div>
+
+      <div class="history-list" id="historyList"></div>
+      <p class="empty-state" id="historyEmpty">No tests taken yet. Your results will appear here after your first assessment.</p>
+
+      <div class="results-actions">
+        <button class="btn btn-primary btn-lg" id="historyStartBtn">Start a Test</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 Nandita Ghosh. All Rights Reserved.</p>
+    <p class="footer-credit">Designed &amp; Developed by Nandita Ghosh</p>
+    <div class="footer-links">
+      <a href="https://github.com/nanditaghosh01" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/nandita-ghosh-828a96327/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
