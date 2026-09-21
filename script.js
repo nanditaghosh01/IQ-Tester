@@ -77,6 +77,7 @@ function finalizeQuestion(base, category, group, difficulty) {
     weight: DIFF_WEIGHT[difficulty],
     question: base.question,
     visual: base.visual || null,
+    memory: base.memory === true,
     options: base.options,
     answer: base.answer,
     explanation: base.explanation,
@@ -547,12 +548,20 @@ const visualGenerators = [
     };
   },
   // dot count matrix
+  // dot count matrix
   (i) => {
     const startCount = randInt(1, 3);
     const step = randInt(1, 2);
     const seq = [startCount, startCount + step, startCount + 2 * step];
     const next = startCount + 3 * step;
+
     const opts = shuffleWith([next, ...uniqueNumberDistractors(next, 3, 2)].filter(n => n > 0));
+    let g = 0;
+    while (opts.length < 4 && g++ < 50) {
+      const c = next + g;
+      if (!opts.includes(c)) opts.push(c);
+    }
+
     return {
       question: 'How many dots should appear in the next panel?',
       visual: `<div class="seq-row">${seq.map(c => svgDotsGrid(c, CYAN)).join('<span class="seq-arrow">→</span>')}<span class="seq-arrow">→</span><span style="opacity:.4">?</span></div>`,
@@ -661,9 +670,15 @@ const CLASSIFY_SETS = [
 
 const verbalGenerators = [
   // analogy
+  // analogy
   (i) => {
     const [a, b, c, d] = ANALOGY_PAIRS[i % ANALOGY_PAIRS.length];
-    const distractors = shuffleWith(ANALOGY_PAIRS.filter((_, idx) => idx !== (i % ANALOGY_PAIRS.length))).slice(0, 3).map(p => p[3]);
+
+    const seenA = new Set([d]);
+    const distractors = [];
+    shuffleWith(ANALOGY_PAIRS.filter((_, idx) => idx !== (i % ANALOGY_PAIRS.length)))
+      .forEach(p => { if (distractors.length < 3 && !seenA.has(p[3])) { seenA.add(p[3]); distractors.push(p[3]); } });
+
     const opts = shuffleWith([d, ...distractors]);
     return {
       question: `${a} is to ${b} as ${c} is to ___?`,
