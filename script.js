@@ -1759,3 +1759,17 @@ function boot() {
 }
 
 document.addEventListener('DOMContentLoaded', boot);
+
+const CYAN = '#D4C4A8', VIOLET = '#778D7A';   // SVG stroke colours
+
+// colour-cycle generator (7th visualGenerators entry):
+const colors = [CYAN, VIOLET, '#415A77'];
+const names = { [CYAN]: 'Sand', [VIOLET]: 'Sage', '#415A77': 'Slate' };
+// ...options: shuffleWith([...Object.values(names), 'Clay'])
+// ...explanation: `The colors cycle Sand → Sage → Slate → Sand, so the next color is ${names[next]}.`
+
+// swatch-matching generator:
+const base = randChoice(['#0D1B2A', '#1B263B', '#415A77', '#778D7A', '#D4C4A8']);
+
+// confetti:
+const colors = ['#778D7A', '#D4C4A8', '#415A77', '#F4F1DE'];
