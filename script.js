@@ -1311,7 +1311,7 @@ function flavorFor(index, total, q) {
   if (index === total - 1) return 'Final challenge.';
   if (index === 0) return `Your mind has ${q.timeLimit} seconds.`;
   if (q.difficulty === 'Expert' || q.difficulty === 'Hard') return 'Think fast.';
-  return 'Next challenge loading…';
+  return 'Stay sharp.';
 }
 
 function startTimer(seconds) {
