@@ -513,7 +513,8 @@ function svgShape(kind, color, filled) {
   return `<svg viewBox="0 0 60 60" width="56" height="56"></svg>`;
 }
 
-const CYAN = '#22d3ee', VIOLET = '#7c6cff';
+/* Palette-aligned SVG accent colours (sand / sage) */
+const CYAN = '#D4C4A8', VIOLET = '#778D7A';
 
 const visualGenerators = [
   // rotation sequence
@@ -547,7 +548,6 @@ const visualGenerators = [
       explanation: `The number of sides increases by one each step: ${seq.join(', ')}, then ${next}.`
     };
   },
-  // dot count matrix
   // dot count matrix
   (i) => {
     const startCount = randInt(1, 3);
@@ -616,17 +616,17 @@ const visualGenerators = [
   },
   // color cycle
   (i) => {
-    const colors = [CYAN, VIOLET, '#ffb020'];
-    const names = { [CYAN]: 'Cyan', [VIOLET]: 'Violet', '#ffb020': 'Amber' };
+    const colors = [CYAN, VIOLET, '#415A77'];
+    const names = { [CYAN]: 'Sand', [VIOLET]: 'Sage', '#415A77': 'Slate' };
     const seq = [colors[0], colors[1], colors[2]];
     const next = colors[0];
     const swatch = (c) => `<span style="display:inline-block;width:44px;height:44px;border-radius:8px;background:${c};border:1px solid rgba(255,255,255,.2)"></span>`;
     return {
       question: 'The colors cycle in a fixed order. Which color comes next?',
       visual: `<div class="seq-row">${seq.map(swatch).join('<span class="seq-arrow">→</span>')}<span class="seq-arrow">→</span><span style="opacity:.4">?</span></div>`,
-      options: shuffleWith([...Object.values(names), 'Green']),
+      options: shuffleWith([...Object.values(names), 'Clay']),
       answer: names[next],
-      explanation: `The colors cycle Cyan → Violet → Amber → Cyan, so the next color is ${names[next]}.`
+      explanation: `The colors cycle Sand → Sage → Slate → Sand, so the next color is ${names[next]}.`
     };
   }
 ];
@@ -669,7 +669,6 @@ const CLASSIFY_SETS = [
 ];
 
 const verbalGenerators = [
-  // analogy
   // analogy
   (i) => {
     const [a, b, c, d] = ANALOGY_PAIRS[i % ANALOGY_PAIRS.length];
@@ -1000,7 +999,7 @@ const processingGenerators = [
   },
   // color swatch matching
   (i) => {
-    const base = randChoice(['#22d3ee', '#7c6cff', '#3ddc97', '#ffb020', '#ff5d7a']);
+    const base = randChoice(['#1B263B', '#415A77', '#778D7A', '#D4C4A8']);
     function shade(hex, amt) {
       const num = parseInt(hex.slice(1), 16);
       let r = (num >> 16) + amt, g = ((num >> 8) & 0xff) + amt, b = (num & 0xff) + amt;
@@ -1722,7 +1721,7 @@ function renderHistory() {
    10. MISC: confetti, toast, boot
    --------------------------------------------------------- */
 function launchConfetti() {
-  const colors = ['#7c6cff', '#22d3ee', '#3ddc97', '#ffb020'];
+  const colors = ['#778D7A', '#D4C4A8', '#415A77', '#F4F1DE'];
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;
   for (let i = 0; i < 60; i++) {
@@ -1759,17 +1758,3 @@ function boot() {
 }
 
 document.addEventListener('DOMContentLoaded', boot);
-
-const CYAN = '#D4C4A8', VIOLET = '#778D7A';   // SVG stroke colours
-
-// colour-cycle generator (7th visualGenerators entry):
-const colors = [CYAN, VIOLET, '#415A77'];
-const names = { [CYAN]: 'Sand', [VIOLET]: 'Sage', '#415A77': 'Slate' };
-// ...options: shuffleWith([...Object.values(names), 'Clay'])
-// ...explanation: `The colors cycle Sand → Sage → Slate → Sand, so the next color is ${names[next]}.`
-
-// swatch-matching generator:
-const base = randChoice(['#0D1B2A', '#1B263B', '#415A77', '#778D7A', '#D4C4A8']);
-
-// confetti:
-const colors = ['#778D7A', '#D4C4A8', '#415A77', '#F4F1DE'];
